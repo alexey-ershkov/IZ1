@@ -1,7 +1,5 @@
 language: cpp
 compiler: clang
-
-build_script:
+script:
   - cmake CMakeLists.txt
   - cmake --build . --target IZ1
-  - cmake --build . --target Gtest

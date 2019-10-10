@@ -13,4 +13,3 @@ add_executable(IZ1 main.c reduction.c)
 add_executable(Gtest gtest.cpp reduction.c)
 
 target_link_libraries(Gtest gtest gtest_main)
-
