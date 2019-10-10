@@ -3,7 +3,6 @@ project(IZ1)
 
 set (CMAKE_CXX_STANDARD 11)
 
-enable_testing()
 
 add_subdirectory(lib/)
 include_directories(lib/googletest/include)
@@ -15,4 +14,3 @@ add_executable(Gtest gtest.cpp reduction.c)
 
 target_link_libraries(Gtest gtest gtest_main)
 
-add_test( Gtest Gtest)
