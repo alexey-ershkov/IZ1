@@ -1,5 +1,5 @@
 language: cpp
-install: make get-deps
-compiler:
-  - clang
-  - gcc
+compiler: clang
+script:
+  - cmake CMakeLists.txt
+  - cmake --build . --target IZ1
