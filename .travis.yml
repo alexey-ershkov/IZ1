@@ -1,8 +1,6 @@
 language: cpp
 compiler: clang
 build_script:
-  - mkdir build
-  - cd build
   - cmake ../CMakeLists.txt
   - cmake --build . --target IZ1
 test_script:
