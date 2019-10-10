@@ -1,7 +1,6 @@
 language: cpp
 compiler: clang
 build_script:
-  - cmake ../CMakeLists.txt
+  - cmake CMakeLists.txt
   - cmake --build . --target IZ1
-test_script:
   - ctest --output-on-failure
