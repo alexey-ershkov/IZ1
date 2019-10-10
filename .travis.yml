@@ -3,3 +3,4 @@ compiler: clang
 script:
   - cmake CMakeLists.txt
   - cmake --build . --target IZ1
+  - cmake --build . --target Gtest
