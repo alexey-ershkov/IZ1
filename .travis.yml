@@ -2,6 +2,24 @@ language: cpp
 compiler:
   -clang
   -gcc
+
+matrix:
+  include:
+    - os: linux
+      env:
+        - TEST="CppCheck"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-6
+            - g++-6
+      script:
+        - cmake -DENABLE_CPPCHECK=ON -DCMAKE_CXX_COMPILER="g++-6" ..
+        - make
+        - make check
+
 script:
   - cmake CMakeLists.txt
   - cmake --build . --target IZ1
