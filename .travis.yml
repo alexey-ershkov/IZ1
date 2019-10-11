@@ -17,7 +17,20 @@ matrix:
           sources: &precise_latest_boost_sources
             - ubuntu-toolchain-r-test
             - llvm-toolchain-precise-3.7
-
+    -|
+        os: linux
+        env:
+          - TEST="Valgrind"
+        addons:
+          apt:
+            sources:
+              - ubuntu-toolchain-r-test
+            packages:
+              - valgrind
+        script:
+          - cmake
+          - make
+          - ctest -T memcheck
 
 install:
   - sudo pip install codecov
