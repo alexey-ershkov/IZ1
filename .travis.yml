@@ -30,4 +30,4 @@ script:
   - make IZ1
   - ctest
 after_success:
-  - codecov -t c376990f-2ad6-4f7b-bbdb-5378a52e295c -X gcov
+  - codecov -t 97178361-a3d8-4f0e-a1aa-8f4154931fd6 -X gcov
