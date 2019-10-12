@@ -5,14 +5,37 @@ branches:
     - master
     - working
 
+install:
+  - sudo pip install codecov
+
 matrix:
   include:
+   - os: linux
+    dist: trusty
+    sudo: true
+    compiler: g++
+    env:
+      - TEST = "GCC"
+    addons:
+      apt:
+        packages: &precise_latest_boost_packages
+          - python-yaml
+          - lcov
+          - libopencv-dev
+        sources: &precise_latest_boost_sources
+         - ubuntu-toolchain-r-test
+         - llvm-toolchain-precise-3.7
+    script:
+      - cmake CMakeLists.txt
+      - make
+      - make IZ1
+
     - os: linux
       dist: trusty
       sudo: true
-      compiler:
-        - clang
-        - g++
+      compiler: clang
+      env:
+        - TEST = "CLANG"
       addons:
         apt:
           packages: &precise_latest_boost_packages
@@ -23,17 +46,33 @@ matrix:
           sources: &precise_latest_boost_sources
             - ubuntu-toolchain-r-test
             - llvm-toolchain-precise-3.7
+      script:
+        - cmake CMakeLists.txt
+        - make
+        - make IZ1
+
+    - os: linux
+        dist: trusty
+        sudo: true
+        compiler: clang
+        env:
+          - TEST = "UNIT_TEST"
+        addons:
+          apt:
+            packages: &precise_latest_boost_packages
+              - valgrind
+              - python-yaml
+              - lcov
+              - libopencv-dev
+            sources: &precise_latest_boost_sources
+              - ubuntu-toolchain-r-test
+              - llvm-toolchain-precise-3.7
+        script:
+          - cmake CMakeLists.txt
+          - make
+          - ctest
 
 
-install:
-  - sudo pip install codecov
 
-
-
-script:
-  - cmake CMakeLists.txt
-  - make
-  - make IZ1
-  - ctest
 after_success:
   - bash <(curl -s https://codecov.io/bash)
