@@ -16,13 +16,30 @@ matrix:
         - clang
       env:
         - TEST="Clang"
-      addons:
-        apt:
-          packages:
       script:
         - cmake CMakeLists.txt
         - make
         - make IZ1
+
+    - os: linux
+      compiler:
+        - g++
+      env:
+        - TEST="Gcc"
+      script:
+        - cmake CMakeLists.txt
+        - make
+        - make IZ1
+
+    - os: linux
+      compiler:
+        - clang
+      env:
+        - TEST="UnitTest"
+      script:
+        - cmake CMakeLists.txt
+        - make
+        - ctest
 
 
 
