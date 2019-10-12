@@ -12,30 +12,52 @@ matrix:
   include:
 
     - os: linux
-      compiler:
-        - clang
       env:
         - TEST="Clang"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - clang
+            - gcc
+            - g++
+      compiler: clang
       script:
         - cmake CMakeLists.txt
         - make
         - make IZ1
 
     - os: linux
-      compiler:
-        - g++
       env:
         - TEST="Gcc"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc
+            - g++
+      compiler: gcc
       script:
         - cmake CMakeLists.txt
         - make
         - make IZ1
 
     - os: linux
-      compiler:
-        - clang
       env:
         - TEST="UnitTest"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - clang
+            - gcc
+            - g++
+      compiler: clang
       script:
         - cmake CMakeLists.txt
         - make
