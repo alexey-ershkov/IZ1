@@ -1,12 +1,18 @@
-
 language: cpp
+
+branches:
+  only:
+    - master
+    - working
 
 matrix:
   include:
     - os: linux
       dist: trusty
       sudo: true
-      compiler: clang
+      compiler:
+        - clang
+        - gcc
       addons:
         apt:
           packages: &precise_latest_boost_packages

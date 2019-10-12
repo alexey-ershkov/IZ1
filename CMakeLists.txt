@@ -12,10 +12,12 @@ include_directories(headers/)
 add_executable(IZ1 main.c reduction.c)
 
 
+
 enable_testing()
 
 add_executable(Gtest gtest.cpp reduction.c)
 target_link_libraries(Gtest gtest gtest_main)
+target_link_libraries(Gtest pthread)
 add_test(UnitTest Gtest)
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/.travis/cmake)
