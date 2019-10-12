@@ -12,7 +12,7 @@ matrix:
       sudo: true
       compiler:
         - clang
-        - gcc
+        - g++
       addons:
         apt:
           packages: &precise_latest_boost_packages
