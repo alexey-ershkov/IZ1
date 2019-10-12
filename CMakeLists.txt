@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 project(IZ1)
 
 set (CMAKE_CXX_STANDARD 11)
-
+set (CMAKE_C_STANDARD  99)
 
 add_subdirectory(lib/)
 include_directories(lib/googletest/include)
