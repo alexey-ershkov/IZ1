@@ -1,76 +1,28 @@
 language: cpp
+dist: trusty
+sudo: true
 
 branches:
   only:
     - master
     - working
 
-install:
-  - sudo pip install codecov
 
 matrix:
   include:
-   - os: linux
-    dist: trusty
-    sudo: true
-    compiler: g++
-    env:
-      - TEST = "GCC"
-    addons:
-      apt:
-        packages: &precise_latest_boost_packages
-          - python-yaml
-          - lcov
-          - libopencv-dev
-        sources: &precise_latest_boost_sources
-         - ubuntu-toolchain-r-test
-         - llvm-toolchain-precise-3.7
-    script:
-      - cmake CMakeLists.txt
-      - make
-      - make IZ1
 
     - os: linux
-      dist: trusty
-      sudo: true
-      compiler: clang
+      compiler:
+        - clang
       env:
-        - TEST = "CLANG"
+        - TEST="Clang"
       addons:
         apt:
-          packages: &precise_latest_boost_packages
-            - valgrind
-            - python-yaml
-            - lcov
-            - libopencv-dev
-          sources: &precise_latest_boost_sources
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.7
+          packages:
       script:
         - cmake CMakeLists.txt
         - make
         - make IZ1
-
-    - os: linux
-        dist: trusty
-        sudo: true
-        compiler: clang
-        env:
-          - TEST = "UNIT_TEST"
-        addons:
-          apt:
-            packages: &precise_latest_boost_packages
-              - valgrind
-              - python-yaml
-              - lcov
-              - libopencv-dev
-            sources: &precise_latest_boost_sources
-              - ubuntu-toolchain-r-test
-              - llvm-toolchain-precise-3.7
-        script:
-          - cmake CMakeLists.txt
-          - make
-          - ctest
 
 
 
